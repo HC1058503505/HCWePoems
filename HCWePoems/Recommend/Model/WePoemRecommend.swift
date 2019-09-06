@@ -16,7 +16,7 @@ class WePoemsRecommends: Codable {
     
 }
 
-class PoemRcommendBriefly: Codable {
+class PoemRcommendBriefly: Codable, Equatable {
     var id = 0
     var idnew = ""
     var nameStr = ""
@@ -26,6 +26,10 @@ class PoemRcommendBriefly: Codable {
     var tag = ""
     var langsongAuthor = ""
     var langsongAuthorPY = ""
+    
+    static func == (_ left: PoemRcommendBriefly, _ right: PoemRcommendBriefly) -> Bool {
+        return (left.id == right.id && left.idnew == right.idnew)
+    }
     
     lazy var rowContentHeight: CGFloat = {
         let poemTitleH = (nameStr as NSString).boundingRect(with: CGSize(width: UIScreen.main.bounds.width - 20.0, height: CGFloat.infinity), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.bold)], context: nil).height
@@ -38,7 +42,9 @@ class PoemRcommendBriefly: Codable {
     }()
     
     lazy var textAttributed: NSMutableAttributedString? = {
+        let begin = CFAbsoluteTimeGetCurrent()
         do {
+            
             guard let poemContData = cont.data(using: String.Encoding.unicode, allowLossyConversion: true) else {
                 return nil
             }
@@ -46,17 +52,29 @@ class PoemRcommendBriefly: Codable {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = NSTextAlignment.center
             paragraphStyle.lineSpacing = 5
-            paragraphStyle.paragraphSpacing = 5
+            paragraphStyle.paragraphSpacing = 10
             var attributed = try NSMutableAttributedString.init(data: poemContData, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
             
             let poemContStr = attributed.string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).pregReplace(pattern: "（.*?）", with: "")
-            
-            attributed = NSMutableAttributedString.init(string: poemContStr, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18.0), NSAttributedString.Key.paragraphStyle : paragraphStyle, NSAttributedString.Key.verticalGlyphForm : NSNumber(integerLiteral: 1)])
-            
+                .pregReplace(pattern: "\\(.*?\\)", with: "")
+
+            attributed = NSMutableAttributedString.init(string: poemContStr, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0), NSAttributedString.Key.paragraphStyle : paragraphStyle])
+            let duration = CFAbsoluteTimeGetCurrent() - begin
+            if duration > 1.0 {
+                debugPrint(cont)
+            }
             return attributed
         } catch _ {
             return nil
         }
+    }()
+    
+    lazy var contStr: String = {
+        return cont.pregReplace(pattern: "<br />", with: "\n")
+                   .pregReplace(pattern: "<p>", with: "")
+                   .pregReplace(pattern: "</p>", with: "")
+                   .pregReplace(pattern: "（.*?）", with: "")
+                   .pregReplace(pattern: "\\(.*?\\)", with: "")
     }()
 }
 

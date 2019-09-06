@@ -26,24 +26,29 @@ class PoemRecommendsViewController: UIViewController {
         tableV.delegate = self
         tableV.prefetchDataSource = self
         tableV.register(PoemBrieflyTableViewCell.self, forCellReuseIdentifier: "PoemBriefly")
+        view.addSubview(tableV)
+        
         if #available(iOS 11.0, *) {
             // 刷新类别上下跳动，是有刷新列表时估算了cell高度导致的
             tableV.estimatedRowHeight = 0
             tableV.estimatedSectionFooterHeight = 0
             tableV.estimatedSectionHeaderHeight = 0
-            tableV.contentInsetAdjustmentBehavior = .never
         }
-        view.addSubview(tableV)
         
         
-        poemRecommendViewModel.poemRecommendList().observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (recommends) in
-            self?.isLoading = false
-            self?.guShiWens.append(contentsOf: recommends)
-            self?.page += 1
-            self?.tableV.reloadData()
+        
+        poemRecommendViewModel
+            .poemRecommendList()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] (recommends) in
+                self?.isLoading = false
+                
+                self?.guShiWens.append(contentsOf: recommends)
+                self?.page += 1
+                self?.tableV.reloadData()
             }, onError: { (error) in
                 
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
         
         tableV.rx.didScroll.subscribe(onNext: {[weak self] _ in
@@ -71,11 +76,9 @@ class PoemRecommendsViewController: UIViewController {
 
 extension PoemRecommendsViewController : UITableViewDataSourcePrefetching, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        DispatchQueue.global().async {
-            for indexPath in indexPaths {
-                _ = self.guShiWens[indexPath.row].textAttributed
-                _ = self.guShiWens[indexPath.row].rowContentHeight
-            }
+        for indexPath in indexPaths {
+            _ = guShiWens[indexPath.row].textAttributed
+            _ = guShiWens[indexPath.row].rowContentHeight
         }
     }
 
@@ -94,5 +97,9 @@ extension PoemRecommendsViewController : UITableViewDataSourcePrefetching, UITab
         return guShiWens[indexPath.row].rowContentHeight
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let poemDeltailVC = PoemDetailViewController(poem: guShiWens[indexPath.row])
+        poemDeltailVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(poemDeltailVC, animated: true)
+    }
 }

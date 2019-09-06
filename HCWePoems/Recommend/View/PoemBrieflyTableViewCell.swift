@@ -8,10 +8,10 @@
 
 import UIKit
 import SnapKit
-import CoreText
+
 class PoemBrieflyTableViewCell: UITableViewCell {
 
-    
+    fileprivate var poemBriefly = PoemRcommendBriefly()
     
     lazy var poemTitleL: UILabel = {
         let titleL = UILabel()
@@ -63,12 +63,18 @@ class PoemBrieflyTableViewCell: UITableViewCell {
     }
     
     func confitureCell(poem: PoemRcommendBriefly) -> Void {
+        if poemBriefly == poem {
+            debugPrint("confitureCell same data")
+            return
+        }
         
         poemTitleL.text = poem.nameStr
         
         poemDyanstyAuthorL.text = poem.chaodai + " / " + poem.author
         
         poemContL.attributedText = poem.textAttributed
+        
+        poemBriefly = poem
     }
 
     override func layoutSubviews() {
@@ -90,16 +96,5 @@ class PoemBrieflyTableViewCell: UITableViewCell {
             make.centerX.equalTo(contentView.snp.centerX)
             make.left.equalTo(contentView.snp.left).offset(10)
         }
-    }
-}
-
-
-extension String {
-    func pregReplace(pattern: String, with: String, options: NSRegularExpression.Options = []) -> String {
-        guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
-            return self
-        }
-        
-        return regex.stringByReplacingMatches(in: self, options: [], range: NSRange(location: 0, length: count), withTemplate: "")
     }
 }

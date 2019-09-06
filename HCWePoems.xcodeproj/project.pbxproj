@@ -15,6 +15,12 @@
 		08DB6B9C231533EF00DFBDC3 /* WePoems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB6B9B231533EF00DFBDC3 /* WePoems.swift */; };
 		08F672232316182B007FA3F6 /* WePoemRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F672222316182B007FA3F6 /* WePoemRecommend.swift */; };
 		08F6722723165689007FA3F6 /* PoemBrieflyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F6722623165689007FA3F6 /* PoemBrieflyTableViewCell.swift */; };
+		08FCC70B2322062700C61408 /* PoemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCC70A2322062700C61408 /* PoemDetailViewController.swift */; };
+		08FCC70F232206B000C61408 /* FindMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCC70E232206B000C61408 /* FindMoreViewController.swift */; };
+		08FCC712232206D300C61408 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCC711232206D300C61408 /* MeViewController.swift */; };
+		08FCC7172322070E00C61408 /* HCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCC7162322070E00C61408 /* HCNavigationController.swift */; };
+		08FCC7192322072D00C61408 /* HCTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCC7182322072D00C61408 /* HCTabBarController.swift */; };
+		08FCC71C23225C9800C61408 /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FCC71B23225C9800C61408 /* CommonExtension.swift */; };
 		89A172EC1D01C4452C69E90C /* Pods_HCWePoems.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78093E611084C7EA1D36B08B /* Pods_HCWePoems.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +35,12 @@
 		08DB6B9B231533EF00DFBDC3 /* WePoems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WePoems.swift; sourceTree = "<group>"; };
 		08F672222316182B007FA3F6 /* WePoemRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WePoemRecommend.swift; sourceTree = "<group>"; };
 		08F6722623165689007FA3F6 /* PoemBrieflyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemBrieflyTableViewCell.swift; sourceTree = "<group>"; };
+		08FCC70A2322062700C61408 /* PoemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailViewController.swift; sourceTree = "<group>"; };
+		08FCC70E232206B000C61408 /* FindMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMoreViewController.swift; sourceTree = "<group>"; };
+		08FCC711232206D300C61408 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		08FCC7162322070E00C61408 /* HCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCNavigationController.swift; sourceTree = "<group>"; };
+		08FCC7182322072D00C61408 /* HCTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCTabBarController.swift; sourceTree = "<group>"; };
+		08FCC71B23225C9800C61408 /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
 		52FC84FD870892AAAF8A5C9F /* Pods-HCWePoems.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HCWePoems.release.xcconfig"; path = "Target Support Files/Pods-HCWePoems/Pods-HCWePoems.release.xcconfig"; sourceTree = "<group>"; };
 		78093E611084C7EA1D36B08B /* Pods_HCWePoems.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HCWePoems.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1734C79BFF5B1FCD6C79855 /* Pods-HCWePoems.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HCWePoems.debug.xcconfig"; path = "Target Support Files/Pods-HCWePoems/Pods-HCWePoems.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,11 +123,16 @@
 			isa = PBXGroup;
 			children = (
 				08DB6B8923152EEE00DFBDC3 /* AppDelegate.swift */,
+				08FCC71A2322073200C61408 /* Base */,
 				08F67221231617E5007FA3F6 /* MoyaProvider */,
 				0844EB272317CE9F00BC0C8D /* Recommend */,
+				08FCC70C2322062C00C61408 /* Detail */,
+				08FCC710232206B400C61408 /* FindMore */,
+				08FCC713232206D700C61408 /* Me */,
 				08DB6B9023152EEF00DFBDC3 /* Assets.xcassets */,
 				08DB6B9223152EEF00DFBDC3 /* LaunchScreen.storyboard */,
 				08DB6B9523152EEF00DFBDC3 /* Info.plist */,
+				08FCC71D23225CA200C61408 /* Common */,
 			);
 			path = HCWePoems;
 			sourceTree = "<group>";
@@ -126,6 +143,55 @@
 				08DB6B9B231533EF00DFBDC3 /* WePoems.swift */,
 			);
 			path = MoyaProvider;
+			sourceTree = "<group>";
+		};
+		08FCC70C2322062C00C61408 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				08FCC70D2322063F00C61408 /* ViewController */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		08FCC70D2322063F00C61408 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				08FCC70A2322062700C61408 /* PoemDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		08FCC710232206B400C61408 /* FindMore */ = {
+			isa = PBXGroup;
+			children = (
+				08FCC70E232206B000C61408 /* FindMoreViewController.swift */,
+			);
+			path = FindMore;
+			sourceTree = "<group>";
+		};
+		08FCC713232206D700C61408 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				08FCC711232206D300C61408 /* MeViewController.swift */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		08FCC71A2322073200C61408 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				08FCC7162322070E00C61408 /* HCNavigationController.swift */,
+				08FCC7182322072D00C61408 /* HCTabBarController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		08FCC71D23225CA200C61408 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				08FCC71B23225C9800C61408 /* CommonExtension.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		58CE2479AE459C337925EBDD /* Pods */ = {
@@ -259,11 +325,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08FCC712232206D300C61408 /* MeViewController.swift in Sources */,
 				0844EB262317A96200BC0C8D /* PoemRecommendViewModel.swift in Sources */,
+				08FCC70B2322062700C61408 /* PoemDetailViewController.swift in Sources */,
+				08FCC70F232206B000C61408 /* FindMoreViewController.swift in Sources */,
 				0844EB2C2317CEF400BC0C8D /* PoemRecommendsViewController.swift in Sources */,
+				08FCC7192322072D00C61408 /* HCTabBarController.swift in Sources */,
 				08DB6B9C231533EF00DFBDC3 /* WePoems.swift in Sources */,
 				08F6722723165689007FA3F6 /* PoemBrieflyTableViewCell.swift in Sources */,
 				08DB6B8A23152EEE00DFBDC3 /* AppDelegate.swift in Sources */,
+				08FCC7172322070E00C61408 /* HCNavigationController.swift in Sources */,
+				08FCC71C23225C9800C61408 /* CommonExtension.swift in Sources */,
 				08F672232316182B007FA3F6 /* WePoemRecommend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
