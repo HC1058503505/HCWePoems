@@ -1,0 +1,13 @@
+//
+//  Flutter.xcconfig
+//  HCWePoems
+//
+//  Created by cgtn on 2019/9/9.
+//  Copyright © 2019 cgtn. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "../poem_detail_flutter/.ios/Flutter/Generated.xcconfig"
+ENABLE_BITCODE=NO
