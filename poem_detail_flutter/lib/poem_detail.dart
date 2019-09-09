@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'dart:ui';
 
 class PoemDetail extends StatefulWidget {
   @override
@@ -27,23 +28,6 @@ class _PoemDetailState extends State<PoemDetail> {
     super.initState();
   }
 
-  void getPoemRecommend(
-      {String poemId,
-      String poemTitle,
-      String poemCont,
-      String author,
-      String dynasty}) {
-    setState(() {
-      poemCommend = {
-        "poemId": poemId,
-        "poemTitle": poemTitle,
-        "poemCont": poemCont,
-        "author": author,
-        "dynasty": dynasty,
-      };
-    });
-  }
-
   // Native调用原生监听
   Future<dynamic> handelPushCall(MethodCall methodCall) {
     String backResult = "failure";
@@ -63,7 +47,7 @@ class _PoemDetailState extends State<PoemDetail> {
 
     return MaterialApp(
       home: Container(
-        padding: EdgeInsets.fromLTRB(10, 64, 10, 0),
+        padding: EdgeInsets.fromLTRB(10, window.viewPadding.top, 10, 0),
         color: Colors.white,
         child: Column(
           children: <Widget>[
@@ -84,26 +68,21 @@ class _PoemDetailState extends State<PoemDetail> {
                   fontSize: 15.0,
                   fontWeight: FontWeight.normal),
             ),
-            Text(
-              poemCommend["poemCont"],
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.normal,
-                decoration: TextDecoration.none,
-                fontSize: 18.0,
-              ),
-            ),
-            Html(
-              customTextAlign: (node) {
-                return TextAlign.center;
-              },
-              useRichText: true,
-              data: poemCommend["poemCont"],
-              defaultTextStyle: TextStyle(
+            Container(
+              alignment: Alignment.topCenter,
+              child: Html(
+                customTextAlign: (node) {
+                  return TextAlign.center;
+                },
+                useRichText: true,
+                data: poemCommend["poemCont"],
+                defaultTextStyle: TextStyle(
                   color: Colors.black,
                   fontSize: 18.0,
                   decoration: TextDecoration.none,
-                  fontWeight: FontWeight.normal),
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
             )
           ],
         ),
